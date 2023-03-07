@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <style>
+        img{
+            aspect-ratio: 3/2;
+            width : 50%;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container text-center mb-4">
+
+        <button class="btn btn-primary px-3 py-2 m-3 rounded-pill" id="btn"> Load Image</button> <br>
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="Image" class="img-fluid" id="img">
+    </div>
+
+    <div class="text-center">
+        <button type="button" id="btn1" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 1</button:button>
+        <button type="button" id="btn2" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 2</button:button>
+        <button type="button" id="btn3" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 3</button:button>
+        <button type="button" id="btn4" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 4</button:button>
+        <button type="button" id="btn5" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 5</button:button>
+        <button type="button" id="btn6" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 6</button:button>
+        <button type="button" id="btn7" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 7</button:button>
+        <button type="button" id="btn8" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 8</button:button>
+        <button type="button" id="btn9" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 9</button:button>
+        <button type="button" id="btn0" class="btn btn-primary px-3 py-2 m-3 rounded-pill">Button 10</button:button>
+    </div>
+    <script type="text/javascript">
+        const img = document.getElementById("img")
+        const btn1 = document.getElementById("btn")
+        btn1.addEventListener("click",loadImage1)
+        
+        let a = false
+        function loadImage1(){
+            if(a){
+                img.setAttribute("src","https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")
+            }
+            else{
+                img.setAttribute("src","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKRzHHirDMQU_v0RHsILVKVt2O2RzpYR_EA_wiH5XaZQiOO_SBqb_8clGzD2cNXMTFoB0&usqp=CAU")
+            }
+            a = !a
+        }
+
+        // const btn2 = document.getElementById("btn2")
+        // btn2.addEventListener("click",loadImage2)
+        // const btn3 = document.getElementById("btn3")
+        // btn3.addEventListener("click",loadImage3)
+        // function loadImage2(){
+        //     img.setAttribute("src","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKRzHHirDMQU_v0RHsILVKVt2O2RzpYR_EA_wiH5XaZQiOO_SBqb_8clGzD2cNXMTFoB0&usqp=CAU")
+        // }
+        // function loadImage3(){
+        //     img.setAttribute("src","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCbmSfemii3dps00qLZfnVBoxNLD5Q8VRCnK7DYJe8D7iN73s_Gz5KAt4mza-LCemniDs&usqp=CAU")
+        // }
+
+        const buttons = document.getElementsByClassName("btn")
+            console.log(typeof(buttons))
+            console.log(buttons)
+        for(let element of buttons){
+            element.addEventListener("click",buttonClicked)
+        }
+
+        function buttonClicked(event){
+            alert(event.target.innerHTML + " is clicked")
+        }
+        
+    </script>
+</body>
+</html>

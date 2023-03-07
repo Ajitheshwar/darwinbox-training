@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        .form-box {
+            padding: 50px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 400px;
+            margin: 0 auto;
+            background-color: rgb(222, 217, 217);
+            box-shadow: 8px 13px 20px black;
+        }
+        .input{
+            width: 380px;
+            margin : 10px 0 15px 0;
+            padding : 5px 10px;
+            border-radius: 5px;
+            border : 1px solid gray;
+            height : 25px;
+        }
+        .fpwd{
+            text-align: end;
+        }
+        .login{
+            padding : 10px 20px;
+            border-radius : 20px;
+        }
+        p{
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        html{
+            height: 100%;
+        }
+        body{
+            margin : 0;
+            height:100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2 id="heading">Welcome User!</h2>
+        <div class="form-box">
+            <form action="">
+                <label for="username"> Username/Email </label><br>
+                <input type="text" id="username" class="input"><br>
+                <label for="password"> Password</label> <br>
+                <input id="password" type="password" class="input"> <br>
+                <div class="fpwd">Forgot Password?</div>
+                <input type="submit" value="Login" class="login">
+            </form>
+            <p>Don't have an account? Create one</p>
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const username = document.querySelector("#username")
+        username.onchange = function(){
+            console.log(username.value)
+        } 
+
+    </script>
+</body>
+
+</html>

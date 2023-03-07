@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+       .square{
+            aspect-ratio: 1;
+            border : 1px solid black;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-size: xx-large;
+       }
+
+       #score1, #score2{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+       }
+       .box{
+            width : 40px;
+            display: inline-block;
+            border-radius : 5px;
+       }
+       #p1,#p2{
+            font-size: 30px;
+            border-top : 1px solid black;
+            border-radius : 0;
+            padding-top: 5px;
+       }
+    </style>
+</head>
+<body>
+
+    <h1 class="text-center my-3">
+        Tic Tac Toe
+    </h1>
+    <div class="text-center mb-3">
+        <button class="btn btn-primary px-3 py-2" onclick="reset()">Reset</button>
+    </div>
+    
+    <div class="row mx-0">
+        <div class="col-3 col-sm-2 col-md-3 col-lg-4" id="score1">
+            <div class="border border-dark rounded-3 p-2 text-center">
+                <span class="box">
+                    <span style="font-size: 10px;"> Player </span>
+                    <span style="font-size: 40px">X</span>
+                </span> <br>
+                <span class="box" id="p1">0</span>  
+            </div>
+        </div>
+        <div class="col-6 col-sm-8 col-md-6 col-lg-4">
+            <div class="row mx-0">
+                <div class="col-4 square" id="1" onclick="mark(event)"></div>
+                <div class="col-4 square" id="2" onclick="mark(event)"></div>
+                <div class="col-4 square" id="3" onclick="mark(event)"></div>
+                <div class="col-4 square" id="4" onclick="mark(event)"></div>
+                <div class="col-4 square" id="5" onclick="mark(event)"></div>
+                <div class="col-4 square" id="6" onclick="mark(event)"></div>
+                <div class="col-4 square" id="7" onclick="mark(event)"></div>
+                <div class="col-4 square" id="8" onclick="mark(event)"></div>
+                <div class="col-4 square" id="9" onclick="mark(event)"></div>
+            </div>
+        </div>
+        <div class="col-3 col-sm-2 col-md-3 col-lg-4" id="score2">
+            <div class="border border-dark rounded-3 p-2 text-center">
+                <span class="box">
+                    <span style="font-size: 10px;"> Player </span>
+                    <span style="font-size: 40px"> O</span>
+                <span class="box" id="p2">0</span>
+            </div>
+        </div>
+    </div>
+    <div style="min-height : 30px">
+        <h5 class="text-center text-danger my-3" id="error"> </h5>
+        <h5 class="text-center text-success my-3" id="message"> </h5>
+    </div>
+
+    <script type="text/javascript">
+        var flag = true;
+        marked = [0,0,0,0,0,0,0,0,0]
+        let p1 = 0;
+        let p2 = 0
+
+        let error = document.getElementById("error")
+        let message = document.getElementById("message")
+        let player1 = document.getElementById('p1')
+        let player2 = document.getElementById('p2')
+        function mark(event){
+            let id = event.target.id
+            if(marked[parseInt(id)-1]!=0){
+                error.innerText = "Box is already selected, select the unselected box"
+            }
+            else{
+                marked[parseInt(id)-1] = flag ? 1 : 2;
+                event.target.innerText = flag ? 'x' : 'o'
+                flag = !flag
+                error.innerText = ""
+            }
+            gameOver()
+        }        
+        function rowCheck(){
+            for(let i=0;i<9;i+=3){
+                let a = true;
+                for(let j=i;j<i+3;j++){
+                    if(marked[i]==0 || marked[j]!=marked[i]){
+                        a = false;
+                    };
+                }
+                if(a){
+                    document.getElementById(JSON.stringify(i+1)).classList.add('bg-success')
+                    document.getElementById(JSON.stringify(i+2)).classList.add('bg-success')
+                    document.getElementById(JSON.stringify(i+3)).classList.add('bg-success')
+                    return marked[i];
+                }
+            }
+            return 0;
+        }
+
+        function columnCheck(){
+            for(let i=0;i<3;i++){
+                let a = true
+                for(let j=i;j<9;j+=3){
+                    if(marked[j]==0 || marked[j]!=marked[i]){
+                        a = false;
+                    }
+                }
+
+                if(a){
+                    document.getElementById(JSON.stringify(i+1)).classList.add('bg-success')
+                    document.getElementById(JSON.stringify(i+4)).classList.add('bg-success')
+                    document.getElementById(JSON.stringify(i+7)).classList.add('bg-success')
+                    return marked[i];
+                }
+            }
+            return 0;
+        }
+
+        function diagonalCheck(){
+            if(marked[0]!=0 && marked[0]==marked[4] && marked[0] == marked[8]){
+                document.getElementById('1').classList.add('bg-success')
+                document.getElementById('5').classList.add('bg-success')
+                document.getElementById('9').classList.add('bg-success')
+                return marked[0]
+            }
+            if(marked[2]!=0 && marked[2]==marked[4] && marked[2] == marked[6]){
+                document.getElementById('3').classList.add('bg-success')
+                document.getElementById('5').classList.add('bg-success')
+                document.getElementById('7').classList.add('bg-success')
+                return marked[2]
+            }
+            return 0;
+        }
+
+        function gameOver(){
+            let r = rowCheck()
+            if(r!=0){
+                message.innerText ="Player " + r + " has won"
+                if(r=='1'){
+                    p1++
+                    player1.innerHTML = p1
+                }
+                else{
+                    p2++
+                    player2.innerHTML = p2
+                }
+                return ;
+            }
+            r = columnCheck()
+            if(r!=0){
+                message.innerText ="Player " + r + " has won"
+                if(r=='1'){
+                    p1++
+                    player1.innerHTML = p1
+                }
+                else{
+                    p2++
+                    player2.innerHTML = p2
+                }
+                return ;
+            }
+            r = diagonalCheck()
+            if(r!=0){
+                message.innerText ="Player " + r + " has won"
+                if(r=='1'){
+                    p1++
+                    player1.innerHTML = p1
+                }
+                else{
+                    p2++
+                    player2.innerHTML = p2
+                }  
+                return ;
+            }
+            for(let val of marked){
+                if(val == 0) return;
+            }
+            error.innerText = "Game Over"
+        }
+
+        function reset(){
+            flag = true
+            message.innerText = ''
+            var squares = document.getElementsByClassName('square')
+            for(let ele of squares){
+                ele.innerText = ''
+                ele.classList.remove('bg-success')
+                
+            }
+            for(let i=0;i<9;i++)[
+                marked[i] = false
+            ]
+        }
+    </script>
+</body>
+</html>

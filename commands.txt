@@ -1,0 +1,33 @@
+cp 	#copy
+mv 	#move
+uniq	#unique lines based on adjacent lines
+cat	#read files
+ls	#list files in current directory
+nano	#create a file and edit
+touch	#creates a file
+sort 	#sorts the file
+
+sort file.txt | uniq
+
+umask
+umask 222
+chmod 044 filename
+
+
+sudo useradd -m prashant
+sudo passwd prashant
+sudo addgroup dey
+sudo usermod -a -G dey prashant (-a = append -G = group )
+sudo chown -R :dey deydir #ownership transfer from deydir group to dey group 
+chmod 775 deydir
+sudo chown prashant deydir
+su -prashant
+
+
+which cat  #gives location of cat 
+
+cp /usr/bin/cat biryani
+
+export PATH="/home/kali/darwinbox:$PATH"  path = source + path
+
+nano ~/.bashrc

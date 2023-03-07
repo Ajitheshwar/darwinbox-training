@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Practice</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /* Arrays */
+console.log("-----------Arrays--------------")
+var arr = [10, 20, 30, 40, "string1"]
+console.log(arr)
+
+let ele = "string2"
+arr.push(ele)
+console.log(arr)
+
+arr.pop()
+arr.pop()
+console.log(arr)
+
+arr.shift()
+console.log(arr)
+
+arr.unshift(100)
+console.log(arr)
+
+arr.map((ele,index)=>{console.log(index + " " + ele)})
+
+
+/* Objects */
+console.log("-----------Objects-----------")
+var student = {
+    "id" : 1001,
+    "name" : "Ajitheshwar",
+    "address" : "Hyderabad",
+    "Age" : 20,
+    "College" : "Jawaharlal Nehru Technological University Hyderabad"
+}
+
+console.log(student.id)
+console.log(student['id'])
+
+var new_obj = {...student,"Course" : "Bachelor of Technology"}
+console.log(new_obj)
+
+
+/* Strings */
+console.log("------------------Strings---------------")
+let email = "ajitheshwar.v@darwinbox.io"
+
+function validateEmail(email){
+    return email.endsWith("@darwinbox.io")
+}
+
+console.log(validateEmail(email))
+
+
+/* Functions */
+console.log("-------------Functions-----------")
+function greeting(name){
+    console.log("Hello "+name)
+}
+greeting("Mike")
+
+function sum(arr){
+    let sum = 0;
+    arr.forEach(element => {
+        sum += element
+    });
+    return sum;
+}
+
+let a = [1, 2, 3, 4, 5]
+let sumOfArrayElements = sum(a)
+console.log("Sum of Array Elements "+sumOfArrayElements);
+
+function function_name(){
+    console.log("Greetings")
+}
+
+const greetUser = function (username){
+    console.log("Hello",username)
+}
+greetUser("Ajith")
+
+const obj = {
+    id : 1001,
+    name : "Mike",
+    designation : "Lawyer",
+    work : function(){console.log("Solves cases")}
+}
+obj.work()
+
+
+let employees = [
+    {
+        id : 1001,
+        name : "Ajitheshwar",
+        salary : 25000,
+        level : 5,
+        age : 20
+    },
+    {
+        id : 1002,
+        name : "Vishal",
+        salary : 25000,
+        level : 3,
+        age : 20
+    },
+    {
+        id : 1003,
+        name : "Neeraj",
+        salary : 25000,
+        level : 1,
+        age : 20
+    },
+    {
+        id : 1004,
+        name : "Priyanka",
+        salary : 25000,
+        level : 2,
+        age : 20
+    },
+    {
+        id : 1005,
+        name : "Sriya",
+        salary : 25000,
+        level : 4,
+        age : 20
+    },
+    {
+        id : 1006,
+        name : "Vishwak",
+        salary : 25000,
+        level : 3,
+        age : 20
+    },
+]
+
+employees.forEach((ele)=>{
+    if(ele.level>=4){
+        console.log(ele.name)
+    }
+})
+let id = 1006
+function addEmployee(name, salary, level, age){
+    id += 1;
+    let obj = {
+        id : id,
+        name : name,
+        salary : salary,
+        level : level,
+        age : age
+    }
+    employees.push(obj);
+    console.log(employees)
+}
+
+function removeEmployee(id){
+    let j = -1;
+    for(let i =0; i<employees.length; i++){
+        if(employees[i].id == id){
+            j = i;
+            break
+        }
+    }
+    if(j!==-1){
+        delete employees[j]
+    }
+    console.log(employees)
+}
+
+function updateEmployee(id,obj){
+    for(let i =0; i<employees.length; i++){
+        if(employees[i].id == id){
+            employess[i] = {...employees, ...obj}
+            break;
+        }
+    }
+    console.log(employees)
+}
+
+function sortEmployees(field){
+    console.log(field)
+    employees.sort(function(emp1, emp2){return emp1[field] - emp2[field]})
+    console.log(employees)
+}
+
+var obj1 = {
+    "name" : "Ajitheshwar",
+    "age" : 22,
+    "location" : "Hyderabad"
+}
+
+var obj2 = {
+    "age" : 21,
+}
+
+var obj2 = {...obj1, ...obj2}
+console.log(obj2)
+
+addEmployee("Anil",15000,4,20)
+// addEmployee("Rohith",20000,3,21)
+// removeEmployee(1004)
+// updateEmployee(1005,"age",22)
+// sortEmployees("level")
+    </script>
+</body>
+</html>
